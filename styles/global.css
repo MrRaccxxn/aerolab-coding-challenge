@@ -1,0 +1,29 @@
+@font-face {
+  font-family: Monserrat;
+  src: url("../public/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: MonserratBlack;
+  src: url("../public/fonts/Montserrat/static/Montserrat-Black.ttf");
+}
+
+body {
+  margin: 0 80px;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+@media only screen and (max-width: 375px) {
+  body {
+    margin: 0 20px;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}
