@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { theme } from "../../../../styles";
 import { Spinner } from "../../../components/Spinner";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import { fetchUser } from "../../../redux/actions/user/user.actions";
 import { LoaderState } from "../../../redux/reducers/loader/loader.reducer";
 import { UserState } from "../../../redux/reducers/user/user.reducer";
@@ -21,7 +22,7 @@ const FixedContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.neutral[0]};
   z-index: 100;
 
-  @media (max-width: 1500px) {
+  @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
     height: 100px;
   }
 
@@ -33,10 +34,14 @@ const FixedContainer = styled.div`
 const Container = styled.div`
   padding: 0 80px;
   width: 100vw;
-  width: 1464px;
+  max-width: 1464px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 500px) {
+    padding: 0 30px;
+  }
 
   @media (max-width: ${({ theme }) => theme.deviceSize.mobile}px) {
     padding: 0 20px;
@@ -48,6 +53,8 @@ export const NavBar = () => {
     (state) => state.UserReducer.user
   );
 
+  const tabletDevice = useMediaQuery(theme.deviceSize.tablet.toString());
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -58,8 +65,12 @@ export const NavBar = () => {
     <FixedContainer>
       <Container>
         <Image
-          src={"/icons/aerolab-logo-1.svg"}
-          width={126}
+          src={
+            tabletDevice
+              ? "/icons/aerolab-logo-2.svg"
+              : "/icons/aerolab-logo-1.svg"
+          }
+          width={tabletDevice ? 48 : 126}
           height={48}
           alt="hero image"
           objectFit="contain"

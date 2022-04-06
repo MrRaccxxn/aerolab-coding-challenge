@@ -32,7 +32,7 @@ const Typograpohy = styled.p<{
       color: ${({ theme }) => theme.colors.neutral[600]};
       text-transform: ${TextTypes[variant].textStyle};
 
-      @media (max-width: ${({ theme }) => theme.deviceSize.tablet}px) {
+      @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
         font-size: ${TextTypes[variant].mobileFontSize};
       }
     `}

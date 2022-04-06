@@ -3,8 +3,10 @@ import { Text } from "../../../components/Text";
 import Image from "next/image";
 import { theme } from "../../../../styles";
 import DownArrow from "../../../../public/icons/down-arrow.svg";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import {
   BannerContainer,
+  ButtonContainer,
   Content,
   HeroImageContainer,
   ImageContainer,
@@ -12,6 +14,8 @@ import {
 } from "./Banner.styled";
 
 export const Banner = () => {
+  const mediumDevice = useMediaQuery(theme.deviceSize.medium.toString());
+
   return (
     <>
       <BannerContainer>
@@ -29,28 +33,33 @@ export const Banner = () => {
               Aeropoints and exchange them for cool tech.
             </Text>
           </TextContent>
-          <Button>
-            <Text color={theme.colors.neutral[0]}>
-              VIEW ALL PRODUCTS&nbsp;&nbsp;
-              <DownArrow
-                width={24}
-                height={24}
-                fill={theme.colors.neutral[0]}
-              />
-            </Text>
-          </Button>
+          <ButtonContainer>
+            <Button>
+              <Text color={theme.colors.neutral[0]}>
+                VIEW ALL PRODUCTS&nbsp;&nbsp;
+                <DownArrow
+                  width={24}
+                  height={24}
+                  fill={theme.colors.neutral[0]}
+                />
+              </Text>
+            </Button>
+          </ButtonContainer>
         </Content>
 
         <HeroImageContainer>
           <ImageContainer>
             <Image
-              src={"/illustrations/hero-desktop.png"}
-              width={722}
-              height={722}
+              src={
+                mediumDevice
+                  ? "/illustrations/hero-responsive.png"
+                  : "/illustrations/hero-desktop.png"
+              }
+              width={mediumDevice ? 480 : 722}
+              height={mediumDevice ? 480 : 722}
               alt="hero image"
               objectFit="contain"
               objectPosition="bottom"
-              className="bannerImg"
             />
           </ImageContainer>
         </HeroImageContainer>

@@ -31,6 +31,7 @@ export const Container = styled.button.attrs(
   align-items: center;
   justify-content: center;
   width: 100%;
+  white-space: nowrap;
   border: none;
   border-radius: 12px;
   margin: 0 2px;

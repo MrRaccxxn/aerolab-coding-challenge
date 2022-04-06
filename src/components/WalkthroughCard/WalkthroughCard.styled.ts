@@ -11,6 +11,11 @@ export const IntroCardBackground = styled.div`
   justify-content: center;
   align-items: center;
 
+  @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
+    width: 323px;
+    height: 477px;
+  }
+
   @media (max-width: ${({ theme }) => theme.deviceSize.tablet}px) {
     width: 323px;
     height: 477px;
@@ -41,9 +46,10 @@ export const TopCard = styled.div<{
   display: flex;
   align-items: end;
   justify-content: center;
+  z-index: 0;
 
   img {
-    width: 100%;
+    width: 80%;
   }
 
   ${({ backgroundColor }) =>
@@ -51,6 +57,11 @@ export const TopCard = styled.div<{
     css`
       background: ${backgroundColor};
     `}
+
+  @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
+    width: 299px;
+    height: 313px;
+  }
 
   @media (max-width: ${({ theme }) => theme.deviceSize.tablet}px) {
     width: 299px;
@@ -60,6 +71,7 @@ export const TopCard = styled.div<{
   @media (max-width: ${({ theme }) => theme.deviceSize.mobile}px) {
     width: 311px;
     height: 244px;
+    align-items: center;
   }
 `;
 
@@ -70,9 +82,15 @@ export const BottomCard = styled.div`
   justify-content: space-evenly;
   align-items: initial;
   padding: 0 24px 0 24px;
-  border: 1px solid ${theme.colors.dev.border};
+  border: 1px solid ${({ theme }) => theme.colors.dev.border};
+  background-color: ${({ theme }) => theme.colors.neutral[0]};
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+  z-index: 1;
+
+  @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
+    height: 140px;
+  }
 
   @media (max-width: ${({ theme }) => theme.deviceSize.tablet}px) {
     height: 140px;
@@ -95,18 +113,19 @@ export const BoxIcon = styled.div`
   align-items: center;
   justify-content: center;
   padding: 8px;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.brand.light};
   margin-right: 16px;
 
-  > {
-    width: 100px;
+  @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
+    width: 32px;
+    height: 32px;
   }
 
   @media (max-width: ${({ theme }) => theme.deviceSize.tablet}px) {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 `;
