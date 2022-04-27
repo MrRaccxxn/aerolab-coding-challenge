@@ -1,4 +1,3 @@
-import { ILoaderState } from "../../reducers/loader/loader.reducer";
 import {
   REQUEST_FAILED,
   REQUEST_FINISHED,

@@ -35,3 +35,8 @@ export const BoxIcon = styled.div`
     background-color: ${({ theme }) => theme.colors.neutral[200]};
   }
 `;
+
+export const ColoredText = styled.div`
+  display: flex;
+  justify-content: center;
+`;

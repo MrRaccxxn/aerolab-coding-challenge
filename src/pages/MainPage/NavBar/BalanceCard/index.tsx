@@ -31,7 +31,7 @@ export const BalanceCard = (props: IUser) => {
       <Text>Add Balance</Text>
       <Hr />
       <PointsContainer>
-        <AeropayCard
+        <AeropayCard  
           ownerName={props.user.name}
           expirationDate={transformToCreationDate(props.user.createDate)}
         ></AeropayCard>

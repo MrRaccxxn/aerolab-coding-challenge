@@ -1,4 +1,3 @@
-import { Reducer } from "redux";
 import {
   ActionLoader,
   REQUEST_FAILED,
@@ -8,18 +7,16 @@ import {
 
 export interface IRequest {
   requestName: string; //Convert to enum
-}
-
-export interface LoaderState {
-  requests: Array<IRequest>;
   inProgress: boolean;
   error: boolean;
 }
 
+export interface LoaderState {
+  requests: Array<IRequest>;
+}
+
 const initialState: LoaderState = {
   requests: [],
-  inProgress: true,
-  error: false,
 };
 
 export const LoaderReducer = (
@@ -34,30 +31,29 @@ export const LoaderReducer = (
 
       if (existingCall) {
         return {
-          ...state,
-          inProgress: true,
           requests: state.requests.map((request) =>
             request.requestName === action.request.requestName
-              ? { ...request }
+              ? { ...request, inProgress: true }
               : request
           ),
         };
       }
 
       return {
-        ...state,
-        inProgress: true,
         requests: [...state.requests, action.request],
       };
     }
 
     case REQUEST_FINISHED: {
       return {
-        ...state,
-        inProgress: false,
-        requests: state.requests.filter(
-          (request) => request.requestName !== action.request.requestName
+        requests: state.requests.map((request) =>
+          request.requestName === action.request.requestName
+            ? { ...request, inProgress: false }
+            : request
         ),
+        // requests: state.requests.filter((request) => {
+        //   request.requestName !== action.request.requestName;
+        // }),
       };
     }
 

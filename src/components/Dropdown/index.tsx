@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ProductTypes } from "../../types/Product.types";
 import { Text } from "../Text";
 import {
   Container,
@@ -6,33 +7,35 @@ import {
   SelectableList,
   TextContainer,
 } from "./Dropdown.styled";
+import { useDispatch } from "react-redux";
+import { changeCategoryBy } from "../../redux/actions/product/product.action";
 
 export const Dropdown = () => {
   const [visible, setVisible] = useState<boolean>(false);
-
-  const items = [
-    { value: 1, label: "All Products" },
-    { value: 2, label: "Gaming" },
-    { value: 3, label: "Audio" },
-    { value: 4, label: "Smart Home" },
-  ];
+  const [text, setText] = useState<string>("All Products");
+  const dispatch = useDispatch();
 
   return (
     <Container>
       <TextContainer onClick={() => setVisible(!visible)}>
-        <Text>Dropdown</Text>
+        <Text>{text}</Text>
         <span className="arrow">{visible ? "▶" : "▼"} </span>
       </TextContainer>
 
       {visible ? (
         <SelectableList>
-          {items.map((item) => {
-            return (
-              <SelectableItem key={item.value}>
-                <Text>{item.label}</Text>
-              </SelectableItem>
-            );
-          })}
+          {Object.values(ProductTypes).map((item) => (
+            <SelectableItem
+              key={item}
+              onClick={() => {
+                setText(item);
+                dispatch(changeCategoryBy(item));
+                setVisible(false);
+              }}
+            >
+              <Text>{item}</Text>
+            </SelectableItem>
+          ))}
         </SelectableList>
       ) : (
         <></>

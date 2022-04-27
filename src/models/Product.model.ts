@@ -1,9 +1,14 @@
 import { ProductTypes } from "../types/Product.types";
 
 export interface Product {
-  img: number;
-  _id: number;
+  img: ImageType;
+  _id: string;
   name: string;
-  cost: number;
+  cost: string;
   category: ProductTypes;
+}
+
+export interface ImageType {
+  url: string;
+  hdUrl: string;
 }

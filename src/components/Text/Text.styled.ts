@@ -49,7 +49,7 @@ export const TextTypes: IVariant = {
     fontFamily: "Monserrat",
     desktopFontSize: "18px",
     mobileFontSize: "16px",
-    fontWeight: "semibold",
+    fontWeight: "bold",
     lineHeight: "150%",
     letterSpacing: "0",
     textStyle: "none",

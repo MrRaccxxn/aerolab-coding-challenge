@@ -1,5 +1,4 @@
-// export const RequestsEnum : string[] = {
-//   getUser,
-// };
-
-export const Default = () => {};
+export const enum RequestEnum {
+  getUser = "getUser",
+  getProducts = "getProducts",
+}

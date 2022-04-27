@@ -54,12 +54,30 @@ export const IllustrationOne = styled.div`
   @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
     transform: translateY(0) translateX(0) rotate(0deg);
   }
+
+  &:hover {
+    transition: 0.5s;
+    transform: translateY(60px) translateX(120px) rotate(-6deg) scale(1.05);
+    z-index: 10;
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🚀</text></svg>")
+        16 0,
+      auto;
+  }
 `;
 
 export const IllustrationTwo = styled.div`
   z-index: 2;
   @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
     transform: translateY(0) translateX(0) rotate(0deg);
+  }
+
+  &:hover {
+    transition: 0.5s;
+    z-index: 10;
+    transform: scale(1.05);
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>👊🏼</text></svg>")
+        16 0,
+      auto;
   }
 `;
 
@@ -69,5 +87,14 @@ export const IllustrationThree = styled.div`
 
   @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
     transform: translateY(0) translateX(0) rotate(0deg);
+  }
+
+  &:hover {
+    transition: 0.5s;
+    z-index: 10;
+    transform: translateY(60px) translateX(-120px) rotate(6deg) scale(1.05);
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🌈</text></svg>")
+        16 0,
+      auto;
   }
 `;

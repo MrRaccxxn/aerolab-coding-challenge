@@ -3,10 +3,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { theme } from "../../../../styles";
-import { Spinner } from "../../../components/Spinner";
 import useMediaQuery from "../../../hooks/useMediaQuery";
 import { fetchUser } from "../../../redux/actions/user/user.actions";
-import { LoaderState } from "../../../redux/reducers/loader/loader.reducer";
 import { UserState } from "../../../redux/reducers/user/user.reducer";
 import { RootState } from "../../../redux/store";
 import { AeroDropDown } from "./AeroDropDown";
@@ -49,17 +47,17 @@ const Container = styled.div`
 `;
 
 export const NavBar = () => {
-  const user = useSelector<RootState, UserState["user"]>(
-    (state) => state.UserReducer.user
-  );
-
-  const tabletDevice = useMediaQuery(theme.deviceSize.tablet.toString());
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
   }, []);
+
+  const user = useSelector<RootState, UserState["user"]>(
+    (state) => state.UserReducer.user
+  );
+
+  const tabletDevice = useMediaQuery(theme.deviceSize.tablet.toString());
 
   return (
     <FixedContainer>

@@ -1,5 +1,9 @@
-import { Container } from "./Spinner.styled";
+import { Container, SpinnerAnimation } from "./Spinner.styled";
 
 export const Spinner = () => {
-  return <Container className="icon"></Container>;
+  return (
+    <Container>
+      <SpinnerAnimation className="icon"></SpinnerAnimation>
+    </Container>
+  );
 };

@@ -7,6 +7,7 @@ import useMediaQuery from "../../../hooks/useMediaQuery";
 import {
   BannerContainer,
   ButtonContainer,
+  Container,
   Content,
   HeroImageContainer,
   ImageContainer,
@@ -17,7 +18,7 @@ export const Banner = () => {
   const mediumDevice = useMediaQuery(theme.deviceSize.medium.toString());
 
   return (
-    <>
+    <Container>
       <BannerContainer>
         <Content>
           <TextContent>
@@ -64,6 +65,6 @@ export const Banner = () => {
           </ImageContainer>
         </HeroImageContainer>
       </BannerContainer>
-    </>
+    </Container>
   );
 };

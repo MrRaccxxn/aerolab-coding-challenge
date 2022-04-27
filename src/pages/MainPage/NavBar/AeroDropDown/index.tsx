@@ -4,12 +4,14 @@ import AerolabIcon from "../../../../../public/icons/aeropay-1.svg";
 import Chevron from "../../../../../public/icons/chevron-active.svg";
 import { theme } from "../../../../../styles";
 import addDecimalPoints from "../../../../../utils/AddDecimalPoints.util";
+import { getNamedRequestState } from "../../../../../utils/getNamedRequestState.util";
 import { Spinner } from "../../../../components/Spinner";
 import { Text } from "../../../../components/Text";
 import { IUser } from "../../../../interfaces/user.interface";
+import { IRequest } from "../../../../redux/actions/loader/loader.types";
 import { LoaderState } from "../../../../redux/reducers/loader/loader.reducer";
-import { UserState } from "../../../../redux/reducers/user/user.reducer";
 import { RootState } from "../../../../redux/store";
+import { RequestEnum } from "../../../../redux/types/request.enum";
 import { BalanceCard } from "../BalanceCard";
 import { Container, DropButton } from "./AeroDropDown.styled";
 
@@ -23,26 +25,26 @@ export const AeroDropDown = (props: IUser) => {
     (state) => state.LoaderReducer
   );
 
+  const userState = getNamedRequestState(requestState, RequestEnum.getUser);
+
   return (
     <Container>
       <DropButton onClick={() => showBalanceCard()}>
-        {requestState.inProgress ? (
+        {userState ? (
           <Spinner />
         ) : (
           <>
             <AerolabIcon className="icon" />
             <Text color={theme.colors.brand.default}>
-              {addDecimalPoints(props.user.points)}
+              {props.user.points != undefined
+                ? addDecimalPoints(props.user.points)
+                : ""}
             </Text>
             <Chevron className="icon" transform="rotate(90)" />
           </>
         )}
       </DropButton>
-      {balanceCard && !requestState.inProgress ? (
-        <BalanceCard user={props.user} />
-      ) : (
-        <></>
-      )}
+      {balanceCard && !userState ? <BalanceCard user={props.user} /> : <></>}
     </Container>
   );
 };
