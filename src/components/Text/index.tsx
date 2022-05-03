@@ -1,4 +1,3 @@
-import { useTheme } from "styled-components";
 import React, { ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { TextTypes } from "./Text.styled";

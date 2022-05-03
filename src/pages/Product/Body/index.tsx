@@ -11,10 +11,7 @@ import {
   orderData,
   redeemProduct,
 } from "../../../redux/actions/product/product.action";
-import {
-  addToast,
-  removeToast,
-} from "../../../redux/actions/toast/toast.action";
+import { addToast } from "../../../redux/actions/toast/toast.action";
 import { fetchUser } from "../../../redux/actions/user/user.actions";
 import { LoaderState } from "../../../redux/reducers/loader/loader.reducer";
 import { ProductState } from "../../../redux/reducers/product/product.reducer";

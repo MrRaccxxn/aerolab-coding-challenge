@@ -3,7 +3,7 @@ import { Text } from "../../../components/Text";
 import Image from "next/image";
 import { theme } from "../../../../styles";
 import DownArrow from "../../../../public/icons/down-arrow.svg";
-import useMediaQuery from "../../../hooks/useMediaQuery";
+
 import {
   BannerContainer,
   ButtonContainer,
@@ -13,6 +13,7 @@ import {
   ImageContainer,
   TextContent,
 } from "./Banner.styled";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 
 export const Banner = () => {
   const mediumDevice = useMediaQuery(theme.deviceSize.medium.toString());
@@ -35,16 +36,18 @@ export const Banner = () => {
             </Text>
           </TextContent>
           <ButtonContainer>
-            <Button>
-              <Text color={theme.colors.neutral[0]}>
-                VIEW ALL PRODUCTS&nbsp;&nbsp;
-                <DownArrow
-                  width={24}
-                  height={24}
-                  fill={theme.colors.neutral[0]}
-                />
-              </Text>
-            </Button>
+            <a href="#productSection">
+              <Button>
+                <Text color={theme.colors.neutral[0]}>
+                  VIEW ALL PRODUCTS&nbsp;&nbsp;
+                  <DownArrow
+                    width={24}
+                    height={24}
+                    fill={theme.colors.neutral[0]}
+                  />
+                </Text>
+              </Button>
+            </a>
           </ButtonContainer>
         </Content>
 

@@ -5,11 +5,11 @@ import { Header } from "./Header";
 
 export const ProductSection = () => {
   return (
-    <>
+    <div id="productSection">
       <Header />
       <Body />
       <Footer />
       <GitRepoLink />
-    </>
+    </div>
   );
 };

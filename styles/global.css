@@ -10,11 +10,19 @@
 
 body {
   margin: 0 80px;
+  background-image: url("../public/illustrations/single-wave-pattern.svg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 100vw min;
 }
 
 .icon {
   width: 24px;
   height: 24px;
+}
+
+a {
+  text-decoration: none;
 }
 
 .mainLogo:hover {
