@@ -26,6 +26,7 @@ export const Toast = (props: ToastProps) => {
       <ToastContainer>
         <IconContainerLeft>
           <Image
+            alt="Icon alert"
             src={
               props.type == ToastEnum.error
                 ? "/icons/system-error.svg"

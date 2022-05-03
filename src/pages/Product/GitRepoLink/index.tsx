@@ -22,6 +22,7 @@ export const GitRepoLink = () => {
             width={24}
             height={24}
             className="icon"
+            alt="git hub"
           />
           <Text gradientColor={hover ? theme.colors.brand.hover : undefined}>
             View this repository

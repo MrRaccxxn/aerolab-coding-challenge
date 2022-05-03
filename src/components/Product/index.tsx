@@ -35,6 +35,7 @@ export const Product = (props: ProductProps) => {
               width={300}
               height={300}
               objectFit="contain"
+              alt={props.name}
             />
           </ImageSize>
         </ImageContainer>

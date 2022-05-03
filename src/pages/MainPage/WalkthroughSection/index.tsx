@@ -25,6 +25,7 @@ export const WalkthroughSection = () => {
             <WalkthroughCard
               image={
                 <Image
+                  alt="illustration walkthroug"
                   src={
                     mediumDevice
                       ? "/illustrations/walkthroug-1-responsive.png"
@@ -47,6 +48,7 @@ export const WalkthroughSection = () => {
             <WalkthroughCard
               image={
                 <Image
+                  alt="illustration walkthroug"
                   src={
                     mediumDevice
                       ? "/illustrations/walkthroug-2-responsive.png"
@@ -70,6 +72,7 @@ export const WalkthroughSection = () => {
             <WalkthroughCard
               image={
                 <Image
+                  alt="illustration walkthroug"
                   src={
                     mediumDevice
                       ? "/illustrations/walkthroug-3-responsive.png"

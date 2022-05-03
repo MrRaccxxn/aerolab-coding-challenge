@@ -29,6 +29,7 @@ export const Pager = () => {
     <Container>
       <BoxIcon onClick={() => _previousPage()}>
         <Image
+          alt="icon left"
           src={"/icons/chevron-default.svg"}
           width={18}
           height={18}
@@ -44,7 +45,12 @@ export const Pager = () => {
       </ColoredText>
 
       <BoxIcon onClick={() => _nextPage()}>
-        <Image src={"/icons/chevron-default.svg"} width={18} height={18} />
+        <Image
+          src={"/icons/chevron-default.svg"}
+          width={18}
+          height={18}
+          alt="icon right"
+        />
       </BoxIcon>
     </Container>
   );
