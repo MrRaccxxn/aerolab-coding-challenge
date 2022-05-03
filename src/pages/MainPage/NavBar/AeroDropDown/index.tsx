@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import AerolabIcon from "../../../../../public/icons/aeropay-1.svg";
 import Chevron from "../../../../../public/icons/chevron-active.svg";
@@ -8,7 +8,6 @@ import { getNamedRequestState } from "../../../../../utils/getNamedRequestState.
 import { Spinner } from "../../../../components/Spinner";
 import { Text } from "../../../../components/Text";
 import { IUser } from "../../../../interfaces/user.interface";
-import { IRequest } from "../../../../redux/actions/loader/loader.types";
 import { LoaderState } from "../../../../redux/reducers/loader/loader.reducer";
 import { RootState } from "../../../../redux/store";
 import { RequestEnum } from "../../../../redux/types/request.enum";
@@ -16,10 +15,9 @@ import { BalanceCard } from "../BalanceCard";
 import { Container, DropButton } from "./AeroDropDown.styled";
 
 export const AeroDropDown = (props: IUser) => {
-  const [balanceCard, setBalanceCard] = useState<boolean>(false);
-  const showBalanceCard = () => {
-    setBalanceCard(!balanceCard);
-  };
+  const [visible, setVisible] = useState<boolean>(false);
+  let ref = useRef<HTMLDivElement>(null);
+  let visibleButton = useRef<HTMLDivElement>(null);
 
   const requestState = useSelector<RootState, LoaderState>(
     (state) => state.LoaderReducer
@@ -27,9 +25,30 @@ export const AeroDropDown = (props: IUser) => {
 
   const userState = getNamedRequestState(requestState, RequestEnum.getUser);
 
+  useEffect(() => {
+    const handleClickOutside = (event: any) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setVisible(false);
+      }
+
+      if (
+        visibleButton.current &&
+        visibleButton.current.contains(event.target)
+      ) {
+        setVisible(!visible);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  });
+
   return (
     <Container>
-      <DropButton onClick={() => showBalanceCard()}>
+      <DropButton ref={visibleButton}>
         {userState ? (
           <Spinner />
         ) : (
@@ -44,7 +63,9 @@ export const AeroDropDown = (props: IUser) => {
           </>
         )}
       </DropButton>
-      {balanceCard && !userState ? <BalanceCard user={props.user} /> : <></>}
+      <div ref={ref} className={visible && !userState ? "block" : "hidden"}>
+        <BalanceCard user={props.user} />
+      </div>
     </Container>
   );
 };

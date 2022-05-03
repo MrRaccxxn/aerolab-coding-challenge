@@ -7,6 +7,14 @@ export const Container = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.dev.border};
   cursor: pointer;
   position: relative;
+
+  .hidden {
+    display: none;
+  }
+
+  .block {
+    display: block;
+  }
 `;
 
 export const TextContainer = styled.div`

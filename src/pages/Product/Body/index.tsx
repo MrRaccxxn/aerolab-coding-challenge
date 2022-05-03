@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { theme } from "../../../../styles";
 import addDecimalPoints from "../../../../utils/AddDecimalPoints.util";
@@ -9,11 +9,19 @@ import useMediaQuery from "../../../hooks/useMediaQuery";
 import {
   fetchProducts,
   orderData,
+  redeemProduct,
 } from "../../../redux/actions/product/product.action";
+import {
+  addToast,
+  removeToast,
+} from "../../../redux/actions/toast/toast.action";
+import { fetchUser } from "../../../redux/actions/user/user.actions";
 import { LoaderState } from "../../../redux/reducers/loader/loader.reducer";
 import { ProductState } from "../../../redux/reducers/product/product.reducer";
+import { UserState } from "../../../redux/reducers/user/user.reducer";
 import { RootState } from "../../../redux/store";
 import { RequestEnum } from "../../../redux/types/request.enum";
+import { ToastEnum } from "../../../types/Toast.types";
 import { BodyContainer, Container, ProductContainer } from "./Body.styled";
 export const Body = () => {
   const dispatch = useDispatch();
@@ -30,19 +38,37 @@ export const Body = () => {
     else dispatch(orderData(itemsPerPage));
   }, [mediumDevice]);
 
+  const [redeemId, setRedeemId] = useState<string>("");
+
   const requestState = useSelector<RootState, LoaderState>(
     (state) => state.LoaderReducer
   );
 
-  const productState = getNamedRequestState(
+  const user = useSelector<RootState, UserState["user"]>(
+    (state) => state.UserReducer.user
+  );
+
+  const productsState = getNamedRequestState(
     requestState,
     RequestEnum.getProducts
   );
 
+  const singularProductState = getNamedRequestState(
+    requestState,
+    RequestEnum.redeemProduct
+  );
+
+  const onRedeemProduct = async (productId: string, productName: string) => {
+    setRedeemId(productId);
+    await dispatch(redeemProduct(productId));
+    dispatch(fetchUser());
+    dispatch(addToast(productName, ToastEnum.succcess));
+  };
+
   return (
     <Container>
       <BodyContainer>
-        {productState ? (
+        {productsState ? (
           <Spinner />
         ) : (
           paginator.dataFiltered != undefined &&
@@ -62,6 +88,9 @@ export const Body = () => {
                     name={product.name}
                     cost={addDecimalPoints(parseInt(product.cost)).toString()}
                     category={product.category}
+                    onClick={() => onRedeemProduct(product._id, product.name)}
+                    isLoading={redeemId == product._id && singularProductState}
+                    isDisabled={parseInt(product.cost) >= user.points}
                   ></Product>
                 </ProductContainer>
               );

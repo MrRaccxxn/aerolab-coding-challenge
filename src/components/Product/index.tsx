@@ -11,6 +11,7 @@ import {
   TextContainer,
   TextDescription,
 } from "./Product.styled";
+import { Spinner } from "../Spinner";
 
 export interface ProductProps {
   id: string;
@@ -18,6 +19,9 @@ export interface ProductProps {
   name: string;
   cost: string;
   category: string;
+  isLoading: boolean;
+  isDisabled: boolean;
+  onClick: (params: any) => any;
 }
 
 export const Product = (props: ProductProps) => {
@@ -43,12 +47,26 @@ export const Product = (props: ProductProps) => {
         </TextDescription>
       </ProductContainer>
 
-      <Button>
-        <Text color="white">Redeem for</Text>
-        &nbsp;&nbsp;
-        <AerolabIcon className="icon" />
-        &nbsp;&nbsp;
-        <Text color="white">{props.cost}</Text>
+      <Button onClick={props.onClick} disabled={props.isDisabled}>
+        {props.isLoading ? (
+          <Text color="white">Processing...</Text>
+        ) : props.isDisabled ? (
+          <>
+            <Text>You need</Text>
+            &nbsp;&nbsp;
+            <AerolabIcon className="icon" />
+            &nbsp;&nbsp;
+            <Text>{props.cost}</Text>
+          </>
+        ) : (
+          <>
+            <Text color="white">Redeem for</Text>
+            &nbsp;&nbsp;
+            <AerolabIcon className="icon" />
+            &nbsp;&nbsp;
+            <Text color="white">{props.cost}</Text>
+          </>
+        )}
       </Button>
     </Container>
   );

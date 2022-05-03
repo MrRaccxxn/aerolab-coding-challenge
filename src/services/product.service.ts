@@ -12,5 +12,12 @@ export class ProductService extends HttpClient {
     return this.classInstance;
   }
 
-  public getProducts = async () => await this.instance.get<Product[]>(`products`);
+  public getProducts = async () =>
+    await this.instance.get<Product[]>(`products`);
+
+  public redeem = async (productId: string) => {
+    await this.instance.post(`redeem`, {
+      productId: productId,
+    });
+  };
 }

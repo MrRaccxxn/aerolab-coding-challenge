@@ -8,6 +8,7 @@ import {
   ORDER_DATA,
   PREVIOUS_PAGE,
   SET_DATA,
+  REDEEM,
 } from "../../actions/product/product.types";
 
 export interface ProductState {
@@ -68,19 +69,29 @@ export const ProductReducer = (
         dataFiltered.length /
         (action.itemsPerPage || state.paginator.itemsPerPage);
 
-      console.log(state.paginator);
-
       return {
         paginator: {
           ...state.paginator,
           page: 1,
           firstItemIndex: 0,
           totalItems: dataFiltered.length,
-          totalPages: totalPages < 1 ? 1 : Math.ceil(totalPages),
+          totalPages: totalPages <= 1 ? 1 : Math.ceil(totalPages),
           dataFiltered: dataFiltered,
+          itemsPerPage:
+            action.itemsPerPage != undefined &&
+            action.itemsPerPage < dataFiltered.length
+              ? action.itemsPerPage
+              : dataFiltered.length,
           sortBy: sorter,
           categoryBy: category,
         },
+      };
+      break;
+    }
+
+    case REDEEM: {
+      return {
+        ...state,
       };
       break;
     }

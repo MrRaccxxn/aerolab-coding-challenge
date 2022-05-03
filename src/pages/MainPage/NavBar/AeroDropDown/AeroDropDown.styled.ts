@@ -5,6 +5,14 @@ export const Container = styled.div`
   width: 180px;
   height: 48px;
   position: relative;
+
+  .hidden {
+    display: none;
+  }
+
+  .block {
+    display: block;
+  }
 `;
 
 export const DropButton = styled.div`
@@ -19,4 +27,10 @@ export const DropButton = styled.div`
   height: inherit;
   cursor: pointer;
   z-index: 10;
+
+  .mainLogo {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;

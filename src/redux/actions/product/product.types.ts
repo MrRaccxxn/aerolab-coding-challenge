@@ -3,6 +3,7 @@ export const ORDER_DATA = "ORDER_DATA";
 export const NEXT_PAGE = "NEXT_PAGE";
 export const PREVIOUS_PAGE = "PREVIOUS_PAGE";
 export const ORDER_BY = "ORDER_BY";
+export const REDEEM = "REDEEM";
 
 export type ActionProduct = {
   type: string;

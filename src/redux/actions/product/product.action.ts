@@ -8,8 +8,10 @@ import {
   NEXT_PAGE,
   ORDER_DATA,
   PREVIOUS_PAGE,
+  REDEEM,
   SET_DATA,
 } from "../product/product.types";
+import { fetchUser } from "../user/user.actions";
 
 const productService = ProductService.getInstance();
 
@@ -22,6 +24,10 @@ export const getProducts = (
   itemsPerPage: itemsPerPage,
 });
 
+export const redeem = (): ActionProduct => ({
+  type: REDEEM,
+});
+
 export function fetchProducts(itemsPerPage: number) {
   return async (dispatch: Dispatch) => {
     await requestHelper(dispatch, RequestEnum.getProducts, async () => {
@@ -32,18 +38,36 @@ export function fetchProducts(itemsPerPage: number) {
   };
 }
 
+export function redeemProduct(productId: string) {
+  return async (dispatch: Dispatch) => {
+    await requestHelper(dispatch, RequestEnum.redeemProduct, async () => {
+      await productService.redeem(productId).then((response) => {
+        dispatch(redeem());
+      });
+    });
+  };
+}
+
 export const orderData = (itemsPerPage: number): ActionProduct => ({
   type: ORDER_DATA,
   itemsPerPage: itemsPerPage,
 });
 
-export const changeCategoryBy = (categoryBy: string): ActionProduct => ({
+export const changeCategoryBy = (
+  categoryBy: string,
+  itemsPerPage: number
+): ActionProduct => ({
   type: ORDER_DATA,
+  itemsPerPage: itemsPerPage,
   categoryBy: categoryBy,
 });
 
-export const changeSortBy = (sort: string): ActionProduct => ({
+export const changeSortBy = (
+  sort: string,
+  itemsPerPage: number
+): ActionProduct => ({
   type: ORDER_DATA,
+  itemsPerPage: itemsPerPage,
   sortBy: sort,
 });
 

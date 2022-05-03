@@ -1,4 +1,6 @@
 import { Body } from "./Body";
+import { Footer } from "./Footer";
+import { GitRepoLink } from "./GitRepoLink";
 import { Header } from "./Header";
 
 export const ProductSection = () => {
@@ -6,6 +8,8 @@ export const ProductSection = () => {
     <>
       <Header />
       <Body />
+      <Footer />
+      <GitRepoLink />
     </>
   );
 };

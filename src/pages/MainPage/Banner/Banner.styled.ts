@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 
 export const BannerContainer = styled.div`
+  position: relative;
   max-width: 1464px;
   width: 100%;
   margin-top: 128px;

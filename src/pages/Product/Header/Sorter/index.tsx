@@ -16,7 +16,7 @@ export const Sorter = () => {
 
   const sort = (sorter: string) => {
     setSelected(sorter);
-    dispatch(changeSortBy(sorter));
+    dispatch(changeSortBy(sorter, mediumDevice ? 8 : 16));
   };
 
   return (

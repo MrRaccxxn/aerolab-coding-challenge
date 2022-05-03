@@ -73,6 +73,7 @@ export const NavBar = () => {
           alt="hero image"
           objectFit="contain"
           objectPosition="bottom"
+          className="mainLogo"
         />
         <AeroDropDown user={user} />
       </Container>

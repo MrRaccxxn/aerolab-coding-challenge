@@ -17,8 +17,5 @@ export const requestHelper = async (
     return result;
   } catch (error) {
     console.log("error");
-    //handle request error
-    // dispatch(requestFailed({ requestName, error }));
-    // return Promise.reject(error);
   }
 };
