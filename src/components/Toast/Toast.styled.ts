@@ -28,7 +28,7 @@ export const Container = styled.div<{
 
   @media (max-width: 600px) {
     height: 96px;
-    width: 360px;
+    width: 300px;
   }
 `;
 
@@ -43,12 +43,12 @@ export const ToastContainer = styled.div`
 
 export const IconContainerLeft = styled.div`
   text-align: end;
-  width: 10%;
+  width: 12%;
 `;
 
 export const IconContainerRight = styled.div`
   text-align: start;
-  width: 10%;
+  width: 12%;
 
   &:hover {
     cursor: pointer;
@@ -60,6 +60,6 @@ export const TittleContainer = styled.div`
   flex-direction: row;
   padding-left: 12px;
   text-align: start;
-  width: 80%;
+  width: 86%;
   gap: 5px;
 `;

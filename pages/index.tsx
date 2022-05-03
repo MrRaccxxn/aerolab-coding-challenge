@@ -14,6 +14,12 @@ const Home: NextPage = () => {
             name="Aerolab Challenge"
             content="Aerolab Challenge resolved by Ayrton Paredes"
           />
+          <meta property="og:title" content="Aerolab Challenge" />
+          <meta
+            property="og:description"
+            content="Aerolab Challenge resolved by Ayrton Paredes"
+          />
+          <meta property="og:type" content="website" />
           <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
         </Head>
 

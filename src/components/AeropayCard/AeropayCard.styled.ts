@@ -39,7 +39,7 @@ export const CardContainer = styled.div`
   .waves {
     content: "";
     width: 100%;
-    height: 100%;
+    height: 40%;
     background-size: cover;
     position: absolute;
     left: 0;

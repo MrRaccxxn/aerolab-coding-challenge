@@ -6,6 +6,7 @@ export const Container = styled.div`
   height: 59px;
   border: 1px solid ${({ theme }) => theme.colors.dev.border};
   cursor: pointer;
+  background-color: ${({ theme }) => theme.colors.neutral[0]};
   position: relative;
 
   .hidden {

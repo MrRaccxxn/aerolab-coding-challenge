@@ -6,6 +6,7 @@ export const Container = styled.div`
   width: 100%;
   padding-top: 40px;
   height: 340px;
+  background-color: ${({ theme }) => theme.colors.neutral[0]};
 
   @media (max-width: ${({ theme }) => theme.deviceSize.mobile}px) {
     height: 280px;

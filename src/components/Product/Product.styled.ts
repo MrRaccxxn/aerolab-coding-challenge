@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: ${({ theme }) => theme.colors.neutral[0]};
 
   @media (max-width: ${({ theme }) => theme.deviceSize.medium}px) {
     max-width: 335px;
