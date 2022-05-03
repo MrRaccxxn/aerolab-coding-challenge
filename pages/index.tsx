@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         <Head>
           <title>Aerolab Tech Zone</title>
           <meta
-            name="description"
+            name="Aerolab Challenge"
             content="Aerolab Challenge resolved by Ayrton Paredes"
           />
           <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
