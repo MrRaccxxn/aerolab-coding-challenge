@@ -48,7 +48,12 @@ export const Toast = (props: ToastProps) => {
         </TittleContainer>
 
         <IconContainerRight onClick={() => dispatch(removeToast(props.id))}>
-          <Image src={"/icons/cross-default.svg"} width={26} height={26} />
+          <Image
+            alt={"Cross"}
+            src={"/icons/cross-default.svg"}
+            width={26}
+            height={26}
+          />
         </IconContainerRight>
       </ToastContainer>
     </Container>
