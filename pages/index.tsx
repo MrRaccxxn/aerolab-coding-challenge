@@ -3,7 +3,6 @@ import Head from "next/head";
 import { Provider } from "react-redux";
 import { MainPage } from "../src/pages/MainPage";
 import { store } from "../src/redux/store";
-import Favicon from "../public/icons/favicon.svg";
 
 const Home: NextPage = () => {
   return (
@@ -13,9 +12,9 @@ const Home: NextPage = () => {
           <title>Aerolab Tech Zone</title>
           <meta
             name="description"
-            content="Aerolab Challenge by Ayrton Paredes"
+            content="Aerolab Challenge resolved by Ayrton Paredes"
           />
-          <link rel="icon" type="image/svg+xml" href={Favicon} />
+          <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
         </Head>
 
         <main>
