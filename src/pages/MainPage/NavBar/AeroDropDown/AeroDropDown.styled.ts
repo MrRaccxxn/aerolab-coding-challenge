@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { theme } from "../../../../../styles";
 
 export const Container = styled.div`
-  width: 180px;
   height: 48px;
   position: relative;
 
@@ -33,4 +32,10 @@ export const DropButton = styled.div`
       cursor: pointer;
     }
   }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;

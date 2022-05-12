@@ -3,6 +3,7 @@ import { Product } from "../../../models/Product.model";
 import { ProductService } from "../../../services/product.service";
 import { requestHelper } from "../../reducers/loader/request.helper";
 import { RequestEnum } from "../../types/request.enum";
+
 import {
   ActionProduct,
   NEXT_PAGE,
@@ -12,7 +13,7 @@ import {
   SET_DATA,
 } from "../product/product.types";
 import { fetchUser } from "../user/user.actions";
-
+import { url } from "inspector";
 const productService = ProductService.getInstance();
 
 export const getProducts = (
@@ -28,12 +29,27 @@ export const redeem = (): ActionProduct => ({
   type: REDEEM,
 });
 
-export function fetchProducts(itemsPerPage: number) {
+export function fetchProducts(itemsPerPage: number, products: Array<any>) {
   return async (dispatch: Dispatch) => {
     await requestHelper(dispatch, RequestEnum.getProducts, async () => {
-      await productService.getProducts().then((response) => {
-        dispatch(getProducts(response, itemsPerPage));
+      let convertedProducts: Product[] = [];
+
+      products.forEach((product) => {
+        let img = {
+          url: product.url,
+          hdUrl: product.hdUrl,
+        };
+
+        convertedProducts.push({
+          img: img,
+          _id: product.uid,
+          name: product.name,
+          cost: product.cost,
+          category: product.category,
+        });
       });
+
+      dispatch(getProducts(convertedProducts, itemsPerPage));
     });
   };
 }

@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useMoralis } from "react-moralis";
 import { useSelector } from "react-redux";
+import { ConnectButton } from "web3uikit";
 import AerolabIcon from "../../../../../public/icons/aeropay-1.svg";
 import Chevron from "../../../../../public/icons/chevron-active.svg";
 import { theme } from "../../../../../styles";
@@ -7,15 +9,17 @@ import addDecimalPoints from "../../../../../utils/AddDecimalPoints.util";
 import { getNamedRequestState } from "../../../../../utils/getNamedRequestState.util";
 import { Spinner } from "../../../../components/Spinner";
 import { Text } from "../../../../components/Text";
+import User from "../../../../components/User";
 import { IUser } from "../../../../interfaces/user.interface";
 import { LoaderState } from "../../../../redux/reducers/loader/loader.reducer";
 import { RootState } from "../../../../redux/store";
 import { RequestEnum } from "../../../../redux/types/request.enum";
 import { BalanceCard } from "../BalanceCard";
-import { Container, DropButton } from "./AeroDropDown.styled";
+import { ButtonContainer, Container, DropButton } from "./AeroDropDown.styled";
 
 export const AeroDropDown = (props: IUser) => {
   const [visible, setVisible] = useState<boolean>(false);
+  const { Moralis, account } = useMoralis();
   let ref = useRef<HTMLDivElement>(null);
   let visibleButton = useRef<HTMLDivElement>(null);
 
@@ -48,21 +52,11 @@ export const AeroDropDown = (props: IUser) => {
 
   return (
     <Container>
-      <DropButton ref={visibleButton}>
-        {userState ? (
-          <Spinner />
-        ) : (
-          <>
-            <AerolabIcon className="icon" />
-            <Text color={theme.colors.brand.default}>
-              {props.user.points != undefined
-                ? addDecimalPoints(props.user.points)
-                : ""}
-            </Text>
-            <Chevron className="icon" transform="rotate(90)" />
-          </>
-        )}
-      </DropButton>
+      <ButtonContainer>
+        <ConnectButton />
+        {account && <User account={account} />}
+      </ButtonContainer>
+
       <div ref={ref} className={visible && !userState ? "block" : "hidden"}>
         <BalanceCard user={props.user} />
       </div>
